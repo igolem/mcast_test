@@ -190,7 +190,7 @@ def mcast_listener(args):
         # print data received on socket
         while True:
             message = sock.recv(1024)
-            print(str(datetime.datetime.now()) + ' received from ' + 
+            print(str(datetime.datetime.now()) + ' received message to ' + 
                   args['group'] + ':' + str(args['port']) +
                   ':\"' + str(message) + '\"')
     except:
