@@ -208,9 +208,9 @@ def mcast_source(args):
     print('Sourcing timestamp message to ' + args['group'] + ':' + str(args['port']) +
           ' every ' + str(args['interval']) + ' seconds.\n')
 
-    print('group ' + args['group'])
-    # send data to socket at specified interval
     host = socket.gethostname()
+
+    # send message to socket at specified interval
     while True:
         message = str(datetime.datetime.now()) + '; ' + host
         sock.sendto(message.encode('utf-8'), (args['group'], args['port']))
