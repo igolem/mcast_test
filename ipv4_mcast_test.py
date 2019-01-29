@@ -186,7 +186,7 @@ def mcast_listener(args):
             message = sock.recv(1024)
             print(str(datetime.datetime.now()) + ' received from ' + 
                   args['group'] + ':' + str(args['port']) +
-                  ':\"' + message + '\"')
+                  ':\"' + str(message) + '\"')
     except:
         print('\nUnexpected error occurred. Could not invoke multicast listener.\n')
 
