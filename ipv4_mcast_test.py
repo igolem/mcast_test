@@ -54,7 +54,7 @@ def get_cli_switches():
                             dest = 'interval',
                             default = 2,
                             type = int,
-                            help = 'set number of seconds between sending messages ' +
+                            help = 'set delay in seconds between sending messages ' +
                                    'when script is a multicast source (range: 1-60).')
     cli_parser.add_argument('-t',
                             dest = 'ttl',
