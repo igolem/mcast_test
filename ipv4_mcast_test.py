@@ -208,7 +208,10 @@ def mcast_source(args):
     print('Sourcing timestamp message to ' + args['group'] + ':' + str(args['port']) +
           ' every ' + str(args['interval']) + ' seconds.\n')
 
-    host = socket.gethostname()
+    try:
+        host = socket.gethostname()
+    except:
+        host = 'hostname_undefined'
 
     # send message to socket at specified interval
     while True:
