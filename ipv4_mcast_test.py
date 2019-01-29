@@ -3,7 +3,7 @@
 # script: ipv4_mcast_test.py
 # author: jason mueller
 # created: 2019-01-28
-# last modified: 2019-01-28
+# last modified: 2019-01-29
 #
 # purpose:
 # Script to test basic multicast functionality.
