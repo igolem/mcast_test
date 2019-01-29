@@ -199,7 +199,6 @@ def mcast_listener(args):
 
 # multicast source
 def mcast_source(args):
-
     try:
         # create socket for sending timestamp message
         sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
