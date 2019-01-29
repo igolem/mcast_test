@@ -12,6 +12,12 @@
 # Built on a script I have used for years for multicast testing,
 # original date not recoverable.
 #
+# usage:
+# help: python3 ipv4_mcast_test.py -h
+# listener: python3 ipv4_mcast_test.py
+# source: python3 ipv4_mcast_test.py -s
+# use ctrl-c to break out of listener or source (both functions are an infinite loop)
+#
 # python version: 3.7.2
 
 
