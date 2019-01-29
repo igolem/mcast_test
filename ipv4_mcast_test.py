@@ -192,7 +192,7 @@ def mcast_listener(args):
             message = sock.recv(1024)
             print(str(datetime.datetime.now()) + ' received message to ' + 
                   args['group'] + ':' + str(args['port']) +
-                  ':\"' + str(message) + '\"')
+                  ': \"' + str(message) + '\"')
     except:
         print('\nUnexpected error occurred. Could not invoke multicast listener.\n')
 
@@ -214,8 +214,8 @@ def mcast_source(args):
     while True:
         message = str(datetime.datetime.now()) + '; ' + host
         sock.sendto(message.encode('utf-8'), (args['group'], args['port']))
-        print('Sent message \"' + message + '\" to group (' +
-              args['group'] + ':' + str(args['port']) + ')')
+        print('Sent message to ' + args['group'] + ':' + str(args['port']) + ': ' +
+              '\"' + message + '\"')
         time.sleep(args['interval'])
 
 
