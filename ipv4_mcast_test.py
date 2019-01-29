@@ -194,32 +194,37 @@ def mcast_listener(args):
                   args['group'] + ':' + str(args['port']) +
                   ': \"' + str(message) + '\"')
     except:
-        print('\nUnexpected error occurred. Could not invoke multicast listener.\n')
+        print('\nUnexpected error occurred or loop exited via ctrl-c break.\n')
 
 
 # multicast source
 def mcast_source(args):
 
-    # create socket for sending timestamp message
-    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
-    sock.setsockopt(socket.IPPROTO_IP, socket.IP_MULTICAST_TTL, args['ttl'])
-
-    print('\nMulticast source invoked at ' + str(datetime.datetime.now()) + '.')
-    print('Sourcing timestamp message to ' + args['group'] + ':' + str(args['port']) +
-          ' every ' + str(args['interval']) + ' seconds.\n')
-
     try:
-        host = socket.gethostname()
-    except:
-        host = 'hostname_undefined'
+        # create socket for sending timestamp message
+        sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
+        sock.setsockopt(socket.IPPROTO_IP, socket.IP_MULTICAST_TTL, args['ttl'])
 
-    # send message to socket at specified interval
-    while True:
-        message = str(datetime.datetime.now()) + '; ' + host
-        sock.sendto(message.encode('utf-8'), (args['group'], args['port']))
-        print('Sent message to ' + args['group'] + ':' + str(args['port']) + ': ' +
-              '\"' + message + '\"')
-        time.sleep(args['interval'])
+        print('\nMulticast source invoked at ' + str(datetime.datetime.now()) + '.')
+        print('Sourcing timestamp message to ' + args['group'] + ':' + str(args['port']) +
+              ' every ' + str(args['interval']) + ' seconds.\n')
+
+        # send data to socket at specified interval
+        try:
+            host = socket.gethostname()
+        except:
+            host = 'hostname_undefined'
+
+        # send message to socket at specified interval
+        while True:
+            message = str(datetime.datetime.now()) + '; ' + host
+            sock.sendto(message.encode('utf-8'), (args['group'], args['port']))
+            print('Sent message to ' + args['group'] + ':' + str(args['port']) + ': ' +
+                  '\"' + message + '\"')
+            time.sleep(args['interval'])
+
+    except:
+        print('\nUnexpected error occurred or loop exited via ctrl-c break.\n')
 
 
 def march_on_dunsinane():
