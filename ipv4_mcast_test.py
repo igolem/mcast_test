@@ -189,10 +189,10 @@ def mcast_listener(args):
 
         # print data received on socket
         while True:
-            recv_message = sock.recv(1024)
+            recv_msg = sock.recv(1024)
             print('{time}, received message to mcast group {group}:{port}: "{message}"'
                   .format(time=datetime.datetime.now(), group=args['group'],
-                          port=args['port'], message=recv_message))
+                          port=args['port'], message=recv_msg))
     except:
         print('\nScript exited via ctrl-c break or unexpected error occurred.\n')
 
