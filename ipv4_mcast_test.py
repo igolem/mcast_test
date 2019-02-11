@@ -3,7 +3,7 @@
 # script: ipv4_mcast_test.py
 # author: jason mueller
 # created: 2019-01-28
-# last modified: 2019-01-29
+# last modified: 2019-02-10
 #
 # purpose:
 # Script to test basic multicast functionality.
@@ -182,19 +182,19 @@ def mcast_listener(args):
                         socket.IP_ADD_MEMBERSHIP,
                         listener)
 
-        print('\nMulticast listener invoked at ' + str(datetime.datetime.now()) + '.')
-        print('Listening to multicast group ' +
-              args['group'] + ':' +
-              str(args['port']) + '.\n')
+        print('\nMulticast listener invoked at {time}.'
+              .format(time=datetime.datetime.now()))
+        print('Listening to multicast group {group_ip}:{port}.\n'
+              .format(group_ip=args['group'], port=args['port']))
 
         # print data received on socket
         while True:
-            message = sock.recv(1024)
-            print(str(datetime.datetime.now()) + ' received message to ' + 
-                  args['group'] + ':' + str(args['port']) +
-                  ': \"' + str(message) + '\"')
+            recv_message = sock.recv(1024)
+            print('{time}, received message to mcast group {group}:{port}: "{message}"'
+                  .format(time=datetime.datetime.now(), group=args['group'],
+                          port=args['port'], message=recv_message))
     except:
-        print('\nUnexpected error occurred or loop exited via ctrl-c break.\n')
+        print('\nScript exited via ctrl-c break or unexpected error occurred.\n')
 
 
 # multicast source
@@ -204,9 +204,10 @@ def mcast_source(args):
         sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
         sock.setsockopt(socket.IPPROTO_IP, socket.IP_MULTICAST_TTL, args['ttl'])
 
-        print('\nMulticast source invoked at ' + str(datetime.datetime.now()) + '.')
-        print('Sourcing timestamp message to ' + args['group'] + ':' + str(args['port']) +
-              ' every ' + str(args['interval']) + ' seconds.\n')
+        print('\nMulticast source invoked at {time}.'
+              .format(time=datetime.datetime.now()))
+        print('Sourcing timestamp message to {group_ip}:{port} every {intrvl} seconds.\n'
+              .format(group_ip=args['group'], port=args['port'], intrvl=args['interval']))
 
         # send data to socket at specified interval
         try:
@@ -216,14 +217,14 @@ def mcast_source(args):
 
         # send message to socket at specified interval
         while True:
-            message = str(datetime.datetime.now()) + '; ' + host
-            sock.sendto(message.encode('utf-8'), (args['group'], args['port']))
-            print('Sent message to ' + args['group'] + ':' + str(args['port']) + ': ' +
-                  '\"' + message + '\"')
+            send_msg = str(datetime.datetime.now()) + '; ' + host
+            sock.sendto(send_msg.encode('utf-8'), (args['group'], args['port']))
+            print('Sent message to {group_ip}:{port}: "{message}."'
+                  .format(group_ip=args['group'], port=args['port'], message=send_msg))
             time.sleep(args['interval'])
 
     except:
-        print('\nUnexpected error occurred or loop exited via ctrl-c break.\n')
+        print('\nScript exited via ctrl-c break or unexpected error occurred.\n')
 
 
 def march_on_dunsinane():
