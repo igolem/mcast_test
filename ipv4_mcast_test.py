@@ -3,7 +3,7 @@
 # script: ipv4_mcast_test.py
 # author: jason mueller
 # created: 2019-01-28
-# last modified: 2019-02-10
+# last modified: 2019-03-02
 #
 # purpose:
 # Script to test basic multicast functionality.
@@ -194,7 +194,8 @@ def mcast_listener(args):
                   .format(time=datetime.datetime.now(), group=args['group'],
                           port=args['port'], message=recv_msg))
     except:
-        print('\nScript exited via ctrl-c break or unexpected error occurred.\n')
+        if not KeyboardInterrupt:
+            print('\nScript exited due unexpected error occurred.\n')
 
 
 # multicast source
@@ -224,7 +225,8 @@ def mcast_source(args):
             time.sleep(args['interval'])
 
     except:
-        print('\nScript exited via ctrl-c break or unexpected error occurred.\n')
+        if not KeyboardInterrupt:
+            print('\nScript exited due unexpected error occurred.\n')
 
 
 def march_on_dunsinane():
