@@ -226,7 +226,7 @@ def mcast_source(args):
 
     except:
         if not KeyboardInterrupt:
-            print('\nScript exited due unexpected error occurred.\n')
+            print('\nScript exited due to an unexpected error.\n')
 
 
 def march_on_dunsinane():
