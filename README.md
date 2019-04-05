@@ -18,7 +18,7 @@ See required Python modules below.
 * The following additional switches are supported:
     * __-g__ [multicast group]; default 239.1.1.1
     * __-p__ [UDP port]; default 2187
-    * __-i__ [delay interval in seconds between messages]; default 2
+    * __-i__ [delay interval in seconds between messages]; default 1
     * __-t__ [TTL specified in IP header]; default 10
 
 -----
