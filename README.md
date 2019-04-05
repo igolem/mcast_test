@@ -20,6 +20,7 @@ See required Python modules below.
     * __-p__ [UDP port]; default 2187
     * __-i__ [delay interval in seconds between messages]; default 1
     * __-t__ [TTL specified in IP header]; default 10
+    * __-l__ toggle logging messages (sent/received) to file
 
 -----
 ## Required Python modules:
