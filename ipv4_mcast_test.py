@@ -35,7 +35,7 @@ def get_cli_switches():
 
     cli_parser.add_argument('-v', '--version',
                             action = 'version',
-                            version = '%(prog)s 1.0.3')
+                            version = '%(prog)s 1.0.4')
     cli_parser.add_argument('-s',
                             dest = 'source',
                             action = 'store_true',
@@ -61,12 +61,10 @@ def get_cli_switches():
                             default = 10,
                             type = int,
                             help = 'set TTL in IP header (range: 1-31).')
-
     cli_parser.add_argument('-l',
                             dest = 'log',
                             action='store_true',
                             help = 'log sent/received messages.')
-
 
     cli_args = vars(cli_parser.parse_args())
     return(cli_args)
